@@ -226,7 +226,7 @@ static int seeed_voice_card_trigger(struct snd_pcm_substream *substream, int cmd
 	case SNDRV_PCM_TRIGGER_START:
 	case SNDRV_PCM_TRIGGER_RESUME:
 	case SNDRV_PCM_TRIGGER_PAUSE_RELEASE:
-		if (cancel_work_sync(&priv->work_codec_clk) != 0) {}
+		if (cancel_work_sync(&priv->work_codec_clk) != 0) {}	
 		#if CONFIG_AC10X_TRIG_LOCK
 		/* I know it will degrades performance, but I have no choice */
 		spin_lock_irqsave(&priv->lock, flags);

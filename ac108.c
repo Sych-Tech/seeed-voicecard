@@ -665,7 +665,7 @@ static int ac108_hw_params(struct snd_pcm_substream *substream, struct snd_pcm_h
 	}
 
 	if ((substream->stream == SNDRV_PCM_STREAM_CAPTURE && snd_soc_dai_stream_active(dai, SNDRV_PCM_STREAM_PLAYBACK))
-	 || (substream->stream == SNDRV_PCM_STREAM_PLAYBACK && snd_soc_dai_stream_active(SNDRV_PCM_STREAM_CAPTURE))) {
+	 || (substream->stream == SNDRV_PCM_STREAM_PLAYBACK && snd_soc_dai_stream_active(dai, SNDRV_PCM_STREAM_CAPTURE))) {
 		/* not configure hw_param twice */
 		/* return 0; */
 	}
