@@ -1407,10 +1407,16 @@ static const struct regmap_config ac108_regmap = {
 	.max_register = 0xDF,
 	.cache_type = REGCACHE_FLAT,
 };
-static int ac108_i2c_probe(struct i2c_client *i2c, const struct i2c_device_id *i2c_id) {
+static int ac108_i2c_probe(struct i2c_client *i2c) {
 	struct device_node *np = i2c->dev.of_node;
+	const struct i2c_device_id *i2c_id = i2c_match_id(i2c->dev.driver->id_table, i2c);
 	unsigned int val = 0;
 	int ret = 0, index;
+
+	if (!i2c_id) {
+        dev_err(&i2c->dev, "No matching device ID\n");
+        return -EINVAL;
+    }
 
 	if (ac10x == NULL) {
 		ac10x = kzalloc(sizeof(struct ac10x_priv), GFP_KERNEL);
