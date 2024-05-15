@@ -1409,7 +1409,7 @@ static const struct regmap_config ac108_regmap = {
 };
 static int ac108_i2c_probe(struct i2c_client *i2c) {
 	struct device_node *np = i2c->dev.of_node;
-	const struct i2c_device_id *i2c_id = i2c_match_id(i2c->dev.driver->id_table, i2c);
+	const struct i2c_device_id *i2c_id = i2c_client_get_device_id(i2c);
 	unsigned int val = 0;
 	int ret = 0, index;
 
